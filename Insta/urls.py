@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Insta.views import Hellodjango
+from Insta.views import PostList, PostDetail
 
 urlpatterns = [
-    path('', Hellodjango.as_view(), name = 'home'),
+    path('', PostList.as_view(), name = 'home'),
+    path('post/<int:pk>/', PostDetail.as_view(), name = 'post_detail'),
 ]
