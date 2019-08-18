@@ -1,3 +1,30 @@
+{%extends "nav.html"%}
+
+
+
+<!-- <div>
+    <ul>
+            {% if request.user.is_authenticated %}
+            <li>
+                <a href= "{% url 'logout' %}"> Logout </a>
+            </li>
+            {%else%}
+            <li>
+                <a href= "{% url 'login' %}"> Login </a>
+            </li>
+            <li>
+                    <a href= "{% url 'signup' %}"> Sign up </a>
+            </li>
+            {% endif %}
+            
+    </ul> 
+
+
+</div> -->
+
+
+{%block content%}
+
 <div>
     <a href="{% url 'make_post' %}"> Make Post </a>
 
@@ -18,3 +45,5 @@
 
 
 </div>
+
+{%endblock content%}
