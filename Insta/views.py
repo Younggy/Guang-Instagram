@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from Insta.forms import CustomUserCreationForm
 
-from Insta.models import Post
+from Insta.models import Post, InstaUser
 
 from django.urls import reverse_lazy
 
@@ -43,3 +43,13 @@ class SignupView(CreateView):
     form_class = CustomUserCreationForm
     template_name = "signup.html"
     success_url = reverse_lazy('login')
+
+class UserDetail(DeleteView):
+    model = InstaUser
+    template_name = "user_profile.html"
+
+
+class EditProfile(UpdateView):
+    model = InstaUser
+    template_name = "edit_profile.html"
+    fields = ('username','profile_pic')

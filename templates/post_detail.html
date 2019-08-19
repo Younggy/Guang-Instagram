@@ -1,15 +1,45 @@
-{%extends "base.html"%}
+{% extends "base.html" %}
 
 
-{%block content%}
+{% block content %}
 
-<p> {{object.title}} </p>
-
-<img src="http://{{ request.META.HTTP_HOST }}/{{object.image}}">
-
-<div>
-    <a href="{% url 'update_post' object.id %}"> Update Post Title </a>
-    <a href="{% url 'delete_post' object.id %}"> Delete Post </a>
+<div class="row single-post">
+    <div class="single-post-card view-update {{ object.pk }}">
+        <div class="header">
+            <a href="{% url 'home' %}">
+                {% if object.author.profile_pic %}
+                    <img class="picture-circle--medium" src="http://{{ request.META.HTTP_HOST }}/{{object.author.profile_pic.url}}">
+                {% endif %}
+                {{ object.author.username }}
+            </a>
+        </div>
+        <div class="image__wrapper">
+            <img class="card__main-image" src="http://{{ request.META.HTTP_HOST }}/{{object.image.url}}" width='1000', height='1000'>
+        </div>
+        <div class="comments-portion">
+            <div class="likes-timestamp-row">
+                <div class="likes">
+                    {% if object.get_like_count %}
+                        {{ object.get_like_count }} like{% if object.get_like_count > 1 %}s{% endif %}
+                    {% endif %}
+                </div>
+                <div class="timestamp">
+                    {{ object.posted_on|timesince }}
+                </div>
+            </div>
+            <ul class="comment-list">
+                {% for comment in object.comments.all %}
+                <li class="comment-list__comment">
+                    <a href="{% url 'home'  %}" class="user">
+                        {{ comment.user.username }}
+                    </a>
+                    <span class="comment">{{ comment.comment }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            
+        </div>
+    </div>
 </div>
 
-{%endblock content%}
+{% endblock content %}
