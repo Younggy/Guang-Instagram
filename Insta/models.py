@@ -18,11 +18,11 @@ class InstaUser(AbstractUser):
 
     def get_followers(self):
         followers = UserConnection.objects.filter(following=self)
-        return follwers
+        return followers
 
     def is_followed_by(self):
         followers = UserConnection.objects.filter(following=self)
-        return follwers.filter(creator=user).exists()
+        return followers.filter(creator=user).exists()
 
     def __str__ (self):
         return self.username

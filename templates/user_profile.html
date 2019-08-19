@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load custom_tags %}
 
 {% block content %}
 
@@ -20,18 +21,15 @@
                             <button class="edit-profile">Edit Profile</button>
                         </a>
                     {% else %}
-                        <!-- {% is_following user object as following %} -->
+                        {% is_following user object as following %}
                         <div class="follow-toggle__container">
-                            <!-- <button class="btn btn-primary {% if not following %}follow-user{% else %}unfollow-user{% endif %}" id="{{ object.pk }}">
+                            <button class="btn btn-primary {% if not following %}follow-user{% else %}unfollow-user{% endif %}" id="{{ object.pk }}">
                                 {% if following %}
                                     Unfollow
                                 {% else %}
                                     Follow
                                 {% endif %}
-                            </button> -->
-                            <button class= "btn btn-primaty">
-                                Follow
-                            </button>
+                            </button> 
                         </div>
                     {% endif %}
                 </div>
